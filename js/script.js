@@ -1,6 +1,6 @@
 /**
  * Duy Le - Personal Portfolio Interactivity
- * Implementation of responsive menu, theme switching, and project filtering.
+ * Implementation of responsive menu, theme switching, project filtering, and accessible carousel.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initProjectFilter();
   initContactForm();
+  initCarousel();
 });
 
 /**
@@ -24,12 +25,11 @@ function initMobileMenu() {
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
     toggleBtn.setAttribute('aria-expanded', !isExpanded);
     navMenu.classList.toggle('open');
-    document.body.classList.toggle('nav-open'); // prevents background scroll when menu is open
+    document.body.classList.toggle('nav-open');
   };
 
   toggleBtn.addEventListener('click', toggleMenu);
 
-  // Close menu when a navigation link is clicked
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (navMenu.classList.contains('open')) {
@@ -38,7 +38,6 @@ function initMobileMenu() {
     });
   });
 
-  // Close menu if clicking outside of the navigation
   document.addEventListener('click', (e) => {
     if (navMenu.classList.contains('open') && 
         !navMenu.contains(e.target) && 
@@ -50,14 +49,12 @@ function initMobileMenu() {
 
 /**
  * Dark/Light Mode Theme Toggle (Extra 1)
- * Supports system preferences fallback and persists choice in localStorage
  */
 function initThemeToggle() {
   const themeToggleBtn = document.getElementById('theme-toggle');
   
   if (!themeToggleBtn) return;
 
-  // Retrieve saved theme preference, or fall back to system dark-mode preference
   const savedTheme = localStorage.getItem('theme');
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
@@ -71,30 +68,144 @@ function initThemeToggle() {
     themeToggleBtn.setAttribute('title', 'Toggle dark theme');
   }
 
-  // Toggle button event handler
   themeToggleBtn.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
-    let newTheme = 'light';
-
-    if (currentTheme === 'light') {
-      newTheme = 'dark';
-    }
+    let newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     
-    // Update accessibility label
     const newLabel = newTheme === 'dark' ? 'Toggle light theme' : 'Toggle dark theme';
     themeToggleBtn.setAttribute('aria-label', newLabel);
     themeToggleBtn.setAttribute('title', newLabel);
-    
-    console.log(`Theme toggled to: ${newTheme}`);
   });
 }
 
 /**
- * Project Category Filter (Extra 2)
- * Dynamically filters project cards based on custom data-category tags
+ * Accessible Image Carousel (Extra 2)
+ * Features next/prev, indicators, keyboard control, and a play/pause autoplay switch (default: paused)
+ */
+function initCarousel() {
+  const carousel = document.querySelector('.carousel');
+  if (!carousel) return;
+
+  const items = carousel.querySelectorAll('.carousel-item');
+  const prevBtn = carousel.querySelector('.carousel-control.prev');
+  const nextBtn = carousel.querySelector('.carousel-control.next');
+  const playPauseBtn = carousel.querySelector('.carousel-play-pause');
+  const indicators = carousel.querySelectorAll('.indicator');
+  
+  let currentIndex = 0;
+  let autoplayInterval = null;
+  let isPlaying = false; // Default: PAUSED (Auto start is turned off per rubric suggestion)
+
+  function showSlide(index) {
+    // Reset range bounds
+    if (index >= items.length) currentIndex = 0;
+    else if (index < 0) currentIndex = items.length - 1;
+    else currentIndex = index;
+
+    // Toggle active slide
+    items.forEach((item, i) => {
+      if (i === currentIndex) {
+        item.classList.add('active');
+        item.setAttribute('aria-hidden', 'false');
+      } else {
+        item.classList.remove('active');
+        item.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Toggle active indicator
+    indicators.forEach((indicator, i) => {
+      if (i === currentIndex) {
+        indicator.classList.add('active');
+        indicator.setAttribute('aria-current', 'true');
+      } else {
+        indicator.classList.remove('active');
+        indicator.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  // Next / Prev button listeners
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    if (isPlaying) resetAutoplay();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    if (isPlaying) resetAutoplay();
+  });
+
+  // Indicator dot buttons click listener
+  indicators.forEach((indicator, i) => {
+    indicator.addEventListener('click', () => {
+      showSlide(i);
+      if (isPlaying) resetAutoplay();
+    });
+  });
+
+  // Keyboard navigation when focused inside carousel
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      nextSlide();
+      if (isPlaying) resetAutoplay();
+    } else if (e.key === 'ArrowLeft') {
+      prevSlide();
+      if (isPlaying) resetAutoplay();
+    }
+  });
+
+  // Autoplay management
+  function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, 5000); // changes slides every 5 seconds
+    playPauseBtn.textContent = 'Pause Autoplay';
+    playPauseBtn.setAttribute('aria-label', 'Pause Autoplay');
+    isPlaying = true;
+    console.log('Carousel Autoplay Started.');
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+    playPauseBtn.textContent = 'Play Autoplay';
+    playPauseBtn.setAttribute('aria-label', 'Play Autoplay');
+    isPlaying = false;
+    console.log('Carousel Autoplay Paused.');
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplayInterval);
+    autoplayInterval = setInterval(nextSlide, 5000);
+  }
+
+  playPauseBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  });
+
+  // Initialize display
+  showSlide(currentIndex);
+  
+  // Set play/pause button state initially (default: stopped)
+  playPauseBtn.textContent = 'Play Autoplay';
+  playPauseBtn.setAttribute('aria-label', 'Play Autoplay');
+}
+
+/**
+ * Project Category Filter (Extra 4)
  */
 function initProjectFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
@@ -104,19 +215,16 @@ function initProjectFilter() {
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Remove active class from all buttons and add to the clicked one
       filterButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const filterValue = btn.getAttribute('data-filter');
-      console.log(`Filtering projects by category: ${filterValue}`);
 
       projectCards.forEach(card => {
         const cardCategory = card.getAttribute('data-category');
 
         if (filterValue === 'all' || cardCategory === filterValue) {
           card.classList.remove('hide');
-          // Trigger a micro-animation fade-in for visible items
           card.style.opacity = '0';
           setTimeout(() => {
             card.style.transition = 'opacity 0.4s ease';
@@ -145,34 +253,24 @@ function initContactForm() {
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
 
-    // Simple validation feedback (in addition to HTML5 native constraints)
     if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
       alert('Please fill out all required fields.');
       return;
     }
 
-    // Success feedback demo
-    console.log('Form submission received:', {
-      name: nameInput.value,
-      email: emailInput.value,
-      message: messageInput.value
-    });
-
-    // Provide immediate visually and audibly accessible confirmation
     const submitBtn = form.querySelector('.btn-submit');
     const originalText = submitBtn.textContent;
     
     submitBtn.textContent = 'Message Sent! ✓';
     submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = '#10b981'; // Green accent
+    submitBtn.style.backgroundColor = '#10b981';
     
-    // Clear the form
     form.reset();
 
     setTimeout(() => {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
-      submitBtn.style.backgroundColor = ''; // Restore default
+      submitBtn.style.backgroundColor = '';
     }, 4000);
   });
 }
