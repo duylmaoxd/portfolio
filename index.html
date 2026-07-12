@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Portfolio site designed from scratch showcasing web development projects, responsive design, and accessible interfaces.">
+  <title>Duy Le - Personal Portfolio</title>
+  <!-- Google Fonts for custom typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-accent">&lt;</span>Duy.L<span class="logo-accent">/&gt;</span>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation Menu">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Theme Switcher -->
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark theme" title="Toggle dark theme">
+        <svg class="theme-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle class="sun" cx="12" cy="12" r="5"></circle>
+          <line class="sun-ray" x1="12" y1="1" x2="12" y2="3"></line>
+          <line class="sun-ray" x1="12" y1="21" x2="12" y2="23"></line>
+          <line class="sun-ray" x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line class="sun-ray" x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line class="sun-ray" x1="1" y1="12" x2="3" y2="12"></line>
+          <line class="sun-ray" x1="21" y1="12" x2="23" y2="12"></line>
+          <line class="sun-ray" x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line class="sun-ray" x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          <path class="moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="section-container hero-container">
+        <div class="hero-content">
+          <span class="hero-welcome">Hello there, I'm Duy</span>
+          <h1 class="hero-title">Crafting Beautiful &amp; Accessible Web Experiences</h1>
+          <p class="hero-subtitle">A passionate web developer specializing in responsive design, semantic HTML5, and modern CSS architectures. Building clean interfaces from scratch.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-blob">
+            <!-- Inline SVG illustration (clean and safe, avoids security script injection) -->
+            <svg class="hero-illustration" width="400" height="400" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="80" fill="url(#hero-gradient)" />
+              <path d="M60 110L90 140L140 70" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+              <defs>
+                <linearGradient id="hero-gradient" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="var(--gradient-start)" />
+                  <stop offset="1" stop-color="var(--gradient-end)" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="section-container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I am a front-end developer who believes that web design should be accessible, high-performing, and beautiful for everyone. By combining clean coding standards with creative layout structures, I build websites that adapt to any screen size and respect user preferences.</p>
+            <p>This portfolio is built entirely from scratch, utilizing fluid layouts, media queries, CSS Custom Variables, custom grid structures, and interactive JavaScript filters.</p>
+          </div>
+          <div class="skills-showcase">
+            <h3 class="skills-title">Core Competencies</h3>
+            <ul class="skills-list">
+              <li class="skill-item">
+                <span class="skill-name">HTML5 &amp; Accessibility (WCAG)</span>
+                <div class="skill-bar" aria-label="HTML5 and Accessibility: 95% proficiency"><div class="skill-progress" style="width: 95%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">CSS3, Flexbox &amp; Grid</span>
+                <div class="skill-bar" aria-label="CSS3, Flexbox and Grid: 90% proficiency"><div class="skill-progress" style="width: 90%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">Responsive Design (Mobile-First)</span>
+                <div class="skill-bar" aria-label="Responsive Design: 95% proficiency"><div class="skill-progress" style="width: 95%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">JavaScript &amp; DOM Manipulation</span>
+                <div class="skill-bar" aria-label="JavaScript and DOM Manipulation: 85% proficiency"><div class="skill-progress" style="width: 85%"></div></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+      <div class="section-container">
+        <h2 class="section-title">My Projects</h2>
+        <p class="section-intro">Here is a curated list of projects that demonstrate my front-end engineering skillset. Use the interactive filter below to view them by category.</p>
+
+        <!-- Project Categories Filter -->
+        <div class="filter-container">
+          <span class="filter-label">Filter:</span>
+          <div class="filter-buttons" role="group" aria-label="Filter projects by category">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="responsive">Responsive</button>
+            <button class="filter-btn" data-filter="interactive">Interactive</button>
+            <button class="filter-btn" data-filter="accessibility">Accessibility</button>
+          </div>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card" data-category="responsive">
+            <div class="project-image-wrapper">
+              <img src="images/sunset.svg" alt="Preview of Responsive Photo Gallery showing nature scenes" width="400" height="250" class="project-image">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Responsive Design</span>
+              <h3 class="project-card-title">Responsive Photo Gallery</h3>
+              <p class="project-card-desc">A flexible grid layout that adapts to mobile, tablet, and desktop viewports, built as a final project for Coursera's Advanced Styling course.</p>
+              <div class="project-links">
+                <a href="https://duylmaoxd.github.io/responsive-photo-gallery/" class="project-link" target="_blank" rel="noopener noreferrer">Live Site</a>
+                <a href="https://github.com/duylmaoxd/responsive-photo-gallery" class="project-link secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card" data-category="accessibility">
+            <div class="project-image-wrapper">
+              <img src="images/mountain.svg" alt="Preview of Accessible Interactive Photo Gallery interface" width="400" height="250" class="project-image">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Accessibility</span>
+              <h3 class="project-card-title">Accessible Photo Gallery</h3>
+              <p class="project-card-desc">Designed with focus-state overrides, ARIA live-preview regions, keyboard navigation triggers, and skip links to achieve high accessibility standards.</p>
+              <div class="project-links">
+                <a href="https://duylmaoxd.github.io/accessible-photo-gallery-final/" class="project-link" target="_blank" rel="noopener noreferrer">Live Site</a>
+                <a href="https://github.com/duylmaoxd/accessible-photo-gallery-final" class="project-link secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card" data-category="interactive">
+            <div class="project-image-wrapper">
+              <img src="images/lake.svg" alt="Preview of Interactive Photo Gallery showing lakes and mountains" width="400" height="250" class="project-image">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">JavaScript Interactivity</span>
+              <h3 class="project-card-title">Interactive Gallery</h3>
+              <p class="project-card-desc">Uses native DOM manipulation, mouseover, focus, leave, and blur event listeners to dynamically update main image previews and detail labels.</p>
+              <div class="project-links">
+                <a href="https://duylmaoxd.github.io/javascript-interactive-photo-gallery/" class="project-link" target="_blank" rel="noopener noreferrer">Live Site</a>
+                <a href="https://github.com/duylmaoxd/javascript-interactive-photo-gallery" class="project-link secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card" data-category="responsive">
+            <div class="project-image-wrapper">
+              <img src="images/city.svg" alt="Preview of Michigan Walks page displaying city and park walks" width="400" height="250" class="project-image">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">CSS Styling</span>
+              <h3 class="project-card-title">Springtime In Michigan</h3>
+              <p class="project-card-desc">An early CSS layout showcasing custom stylesheets, styling navigation links, borders, backgrounds, and lists from scratch.</p>
+              <div class="project-links">
+                <a href="https://duylmaoxd.github.io/css-final-project/" class="project-link" target="_blank" rel="noopener noreferrer">Live Site</a>
+                <a href="https://github.com/duylmaoxd/css-final-project" class="project-link secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="section-container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+          <div class="contact-details">
+            <h3 class="contact-subtitle">Let's build something together</h3>
+            <p>Have a project in mind or want to learn more about my work? Feel free to contact me via email or connect with me on GitHub. I'll get back to you as soon as possible.</p>
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <span class="info-label">Email:</span>
+                <span class="info-value"><a href="mailto:duylmaoxd@gmail.com">duylmaoxd@gmail.com</a></span>
+              </div>
+              <div class="contact-info-item">
+                <span class="info-label">Location:</span>
+                <span class="info-value">Vietnam</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form-wrapper">
+            <form id="contact-form" action="#" class="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Enter your message" rows="5"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Duy Le. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/duylmaoxd" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#hero" class="back-to-top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
