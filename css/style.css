@@ -433,107 +433,6 @@ p {
 }
 
 /* ==========================================================================
-   Rubric Dashboard Styling
-   ========================================================================== */
-.rubric-section {
-  background-color: var(--panel-bg);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.rubric-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.rubric-card {
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  padding: 1.75rem;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-}
-
-.rubric-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
-
-.rubric-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.rubric-header h3 {
-  font-size: 1.25rem;
-  color: var(--text-color);
-}
-
-.rubric-score {
-  background: var(--primary-color);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-weight: 700;
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
-  flex-shrink: 0;
-}
-
-.rubric-text {
-  font-size: 0.95rem;
-  margin-bottom: 1.25rem;
-  color: var(--text-muted);
-}
-
-.rubric-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.rubric-list li::before {
-  content: "✓ ";
-  color: #10b981;
-  font-weight: bold;
-}
-
-.rubric-full {
-  grid-column: 1 / -1;
-}
-
-.extras-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.extra-item {
-  border-left: 3px solid var(--primary-color);
-  padding-left: 1rem;
-}
-
-.extra-item h4 {
-  font-size: 1.05rem;
-  margin-bottom: 0.25rem;
-  color: var(--text-color);
-}
-
-.extra-item p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
    Featured Landscape Carousel (Extra 2)
    ========================================================================== */
 .carousel-section {
@@ -1069,10 +968,6 @@ p {
     height: 380px;
   }
 
-  /* Rubric Grid 2 columns */
-  .rubric-grid {
-    grid-template-columns: 1fr 1fr;
-  }
   
   /* About section adjustments */
   .about-grid {
@@ -1089,9 +984,6 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 
-  .extras-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 /* 2. Desktop view (min-width: 1024px) */
@@ -1116,9 +1008,6 @@ p {
     padding: 1.5rem;
   }
 
-  .extras-grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
 }
 
 /* 3. Mobile Navigation Override Overlay (max-width: 767px) */
@@ -1198,16 +1087,10 @@ p {
   .skip-link, 
   .filter-container,
   .hero-actions,
-  .project-links,
   .contact-form-wrapper,
-  .back-to-top,
-  .carousel-control,
-  .carousel-play-pause,
-  .carousel-indicators,
-  .rubric-section {
+  .project-links {
     display: none !important;
-  }
-  
+  }  
   /* Reset colors to black and white for readability and ink saving */
   :root {
     --bg-color: #ffffff !important;
